@@ -1,6 +1,8 @@
+import './App.scss';
 import { Header } from '../Header/Header';
 import { SearchPanel } from '../SearchPanel/SearchPanel';
 import { TodoList } from '../TodoList/TodoList';
+import { ItemStatusFilter } from '../ItemStatusFilter/ItemStatusFilter';
 
 export const App = () => {
   const todoItems = [
@@ -22,9 +24,14 @@ export const App = () => {
   ];
 
   return (
-    <div>
-      <Header/>
-      <SearchPanel/>
+    <div className="app">
+      <Header toDo={1} done={3}/>
+
+      <div className="top-panel">
+        <SearchPanel/>
+        <ItemStatusFilter/>
+      </div>
+
       <TodoList todos={todoItems}/>
     </div>
   );
