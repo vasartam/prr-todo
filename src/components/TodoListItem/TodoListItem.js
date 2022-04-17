@@ -1,5 +1,5 @@
-export const TodoListItem = (props) => {
+export const TodoListItem = ({label}) => {
     return (
-        <span>{props.label}</span>
+        <span>{label}</span>
     )
 }
