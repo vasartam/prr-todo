@@ -1,15 +1,11 @@
-export const TodoList = () => {
-    const items = [
-        'Drink Coffee',
-        'Learn React',
-        'Build Awesome App',
-    ];
+import {TodoListItem} from "../TodoListItem/TodoListItem";
 
+export const TodoList = () => {
     return (
         <ul>
-            <li>{items[0]}</li>
-            <li>{items[1]}</li>
-            <li>{items[2]}</li>
+            <li><TodoListItem label="Drink Coffee"/></li>
+            <li><TodoListItem label="Learn React"/></li>
+            <li><TodoListItem label="Build Awesome App"/></li>
         </ul>
     );
 }
