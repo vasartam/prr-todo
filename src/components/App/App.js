@@ -1,6 +1,6 @@
-import { Header } from '../Header/Header'
-import { SearchPanel } from '../SearchPanel/SearchPanel'
-import { TodoList } from '../TodoList/TodoList'
+import { Header } from '../Header/Header';
+import { SearchPanel } from '../SearchPanel/SearchPanel';
+import { TodoList } from '../TodoList/TodoList';
 
 export const App = () => {
   const todoItems = [
@@ -19,7 +19,7 @@ export const App = () => {
       label: 'Have a lunch',
       important: false,
     },
-  ]
+  ];
 
   return (
     <div>
@@ -27,5 +27,5 @@ export const App = () => {
       <SearchPanel/>
       <TodoList todos={todoItems}/>
     </div>
-  )
-}
+  );
+};

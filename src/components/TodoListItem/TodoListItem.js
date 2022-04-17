@@ -1,9 +1,9 @@
-import './TodoListItem.scss'
+import './TodoListItem.scss';
 
 export const TodoListItem = ({ label, important = false }) => {
   const style = {
     color: important ? 'tomato' : 'black',
-  }
+  };
 
   return (
     <span
@@ -12,5 +12,5 @@ export const TodoListItem = ({ label, important = false }) => {
     >
       {label}
     </span>
-  )
-}
+  );
+};

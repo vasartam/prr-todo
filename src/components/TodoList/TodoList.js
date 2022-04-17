@@ -1,5 +1,5 @@
-import './TodoList.scss'
-import { TodoListItem } from '../TodoListItem/TodoListItem'
+import './TodoList.scss';
+import { TodoListItem } from '../TodoListItem/TodoListItem';
 
 export const TodoList = ({ todos }) => {
   return (
@@ -10,5 +10,5 @@ export const TodoList = ({ todos }) => {
         </li>
       ))}
     </ul>
-  )
-}
+  );
+};
