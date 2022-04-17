@@ -1,5 +1,5 @@
 import './TodoList.scss';
-import { TodoListItem } from '../TodoListItem/TodoListItem';
+import TodoListItem from '../TodoListItem';
 
 export const TodoList = ({ todos }) => {
   return (

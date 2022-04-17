@@ -1,8 +1,8 @@
 import './App.scss';
-import { Header } from '../Header/Header';
-import { SearchPanel } from '../SearchPanel/SearchPanel';
-import { TodoList } from '../TodoList/TodoList';
-import { ItemStatusFilter } from '../ItemStatusFilter/ItemStatusFilter';
+import TodoList from '../TodoList';
+import ItemStatusFilter from '../ItemStatusFilter';
+import SearchPanel from '../SearchPanel';
+import Header from '../Header';
 
 export const App = () => {
   const todoItems = [
