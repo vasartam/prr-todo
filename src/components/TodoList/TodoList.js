@@ -1,10 +1,11 @@
+import './TodoList.scss';
 import { TodoListItem } from '../TodoListItem/TodoListItem'
 
 export const TodoList = ({ todos }) => {
   return (
-    <ul>
+    <ul className="list-group todo-list">
       {todos.map(({ id, ...props }) => (
-        <li key={id}>
+        <li className="list-group-item" key={id}>
           <TodoListItem {...props}/>
         </li>
       ))}
