@@ -1,11 +1,13 @@
 import {TodoListItem} from "../TodoListItem/TodoListItem";
 
-export const TodoList = () => {
+export const TodoList = ({todos}) => {
     return (
         <ul>
-            <li><TodoListItem label="Drink Coffee"/></li>
-            <li><TodoListItem label="Learn React"/></li>
-            <li><TodoListItem label="Build Awesome App" important/></li>
+            {todos.map((item, index) => (
+                <li key={index}>
+                    <TodoListItem {...item}/>
+                </li>
+            ))}
         </ul>
     );
 }
