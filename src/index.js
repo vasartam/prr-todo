@@ -30,15 +30,8 @@ const SearchPanel = () => {
 }
 
 const App = () => {
-    // const isLoggedIn = true;
-    // const loginBox = <span>Log in please</span>;
-    // const welcomeBox = <span>Welcome Back!</span>;
-    // const value = '<script>alert("XSS!");</script>';
-
     return (
         <div>
-            {/*{isLoggedIn ? welcomeBox : loginBox}*/}
-            {/*{value}*/}
             <Header/>
             <SearchPanel/>
             <TodoList/>
