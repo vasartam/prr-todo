@@ -2,32 +2,54 @@ import { Component } from 'react';
 import './TodoListItem.scss';
 
 export class TodoListItem extends Component {
-  onLabelClick = () => {
-    console.log(`Done: ${this.props.label}`)
+  constructor (props, context) {
+    super(props, context);
   }
 
-  render () {
-    const { label, important = false } = this.props;
+  state = {
+    done: false,
+    important: false,
+  };
 
-    const labelStyle = {
-      color: important ? 'steelblue' : 'black',
-      fontWeight: important ? 'bold' : 'normal',
-    };
+  onLabelClick = () => {
+    this.setState({
+      done: true,
+    });
+  };
+
+  onMarkImportant = () => {
+    this.setState({
+      important: true,
+    });
+  };
+
+  render () {
+    const { label } = this.props;
+    const { done, important } = this.state;
+
+    let classNames = 'todo-list-item';
+
+    if (done) {
+      classNames += ' todo-list-item--done';
+    }
+
+    if (important) {
+      classNames += ' todo-list-item--important';
+    }
 
     return (
       <span
-        className="todo-list-item"
-        style={labelStyle}
+        className={classNames}
       >
       <span
         className="todo-list-item__label"
         onClick={this.onLabelClick.bind(this)}
-        style={labelStyle}
       >
         {label}
       </span>
       <div className="todo-list-item__buttons">
-        <button className="todo-list-item__button btn btn-outline-success btn-sm" type="button">
+        <button className="todo-list-item__button btn btn-outline-success btn-sm" type="button"
+                onClick={this.onMarkImportant}>
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                className="bi bi-exclamation-lg" viewBox="0 0 16 16">
             <path
