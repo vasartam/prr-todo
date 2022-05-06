@@ -27,12 +27,9 @@ export class App extends Component {
   };
 
   onItemDeleted = (id) => {
-    console.log('Deleted:', id);
-
-    // this.state.todoItems = this.state.todoItems.filter((item) => item.id !== id)
-
     this.setState(({todoItems}) => {
       const idx = todoItems.findIndex((el) => el.id === id);
+
       const newArray = [
         ...(todoItems.slice(0, idx)),
         ...(todoItems.slice(idx + 1))
