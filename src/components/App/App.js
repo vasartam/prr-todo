@@ -26,7 +26,7 @@ export class App extends Component {
     ],
   };
 
-  onItemDeleted = (id) => {
+  deleteItem = (id) => {
     this.setState(({todoItems}) => {
       const idx = todoItems.findIndex((el) => el.id === id);
 
@@ -53,7 +53,7 @@ export class App extends Component {
 
         <TodoList
           todos={this.state.todoItems}
-          onDeleted={this.onItemDeleted}
+          onDeleted={this.deleteItem}
         />
       </div>
     );
