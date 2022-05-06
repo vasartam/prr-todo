@@ -6,8 +6,8 @@ import SearchPanel from '../SearchPanel';
 import Header from '../Header';
 
 export class App extends Component {
-  render () {
-    const todoItems = [
+  state = {
+    todoItems: [
       {
         id: 1,
         label: 'Drink Coffee',
@@ -23,8 +23,28 @@ export class App extends Component {
         label: 'Have a lunch',
         important: false,
       },
-    ];
+    ],
+  };
 
+  onItemDeleted = (id) => {
+    console.log('Deleted:', id);
+
+    // this.state.todoItems = this.state.todoItems.filter((item) => item.id !== id)
+
+    this.setState(({todoItems}) => {
+      const idx = todoItems.findIndex((el) => el.id === id);
+      const newArray = [
+        ...(todoItems.slice(0, idx)),
+        ...(todoItems.slice(idx + 1))
+      ];
+
+      return {
+        todoItems: newArray,
+      }
+    })
+  }
+
+  render () {
     return (
       <div className="app">
         <Header toDo={1} done={3}/>
@@ -35,8 +55,8 @@ export class App extends Component {
         </div>
 
         <TodoList
-          todos={todoItems}
-          onDeleted={(id) => {{console.log('Deleted:', id);}}}
+          todos={this.state.todoItems}
+          onDeleted={this.onItemDeleted}
         />
       </div>
     );
