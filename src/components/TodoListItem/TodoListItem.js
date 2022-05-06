@@ -1,16 +1,20 @@
+import { Component } from 'react';
 import './TodoListItem.scss';
 
-export const TodoListItem = ({ label, important = false }) => {
-  const labelStyle = {
-    color: important ? 'steelblue' : 'black',
-    fontWeight: important ? 'bold' : 'normal',
-  };
+export class TodoListItem extends Component {
+  render () {
+    const { label, important = false } = this.props;
 
-  return (
-    <span
-      className="todo-list-item"
-      style={labelStyle}
-    >
+    const labelStyle = {
+      color: important ? 'steelblue' : 'black',
+      fontWeight: important ? 'bold' : 'normal',
+    };
+
+    return (
+      <span
+        className="todo-list-item"
+        style={labelStyle}
+      >
       <span className="todo-list-item__label" style={labelStyle}>
         {label}
       </span>
@@ -33,5 +37,6 @@ export const TodoListItem = ({ label, important = false }) => {
         </button>
       </div>
     </span>
-  );
-};
+    );
+  }
+}
