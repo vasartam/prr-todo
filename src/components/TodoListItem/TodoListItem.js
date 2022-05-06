@@ -2,18 +2,9 @@ import { Component } from 'react';
 import './TodoListItem.scss';
 
 export class TodoListItem extends Component {
-
-  constructor (props, context) {
-    super(props, context);
-
-    this.onLabelClick = () => {
-      console.log(`Done: ${this.props.label}`)
-    }
+  onLabelClick = () => {
+    console.log(`Done: ${this.props.label}`)
   }
-
-  // onLabelClick() {
-  //   console.log(`Done: ${this.props.label}`)
-  // }
 
   render () {
     const { label, important = false } = this.props;
