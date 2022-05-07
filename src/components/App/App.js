@@ -7,40 +7,35 @@ import Header from '../Header';
 import ItemAddForm from '../ItemAddForm';
 
 export class App extends Component {
-  todoItemAutoIncrement = 4;
+  todoItemAutoIncrement = 1;
 
   state = {
     todoItems: [
-      {
-        id: 1,
-        label: 'Drink Coffee',
-        important: false,
-      },
-      {
-        id: 2,
-        label: 'Build Awesome App',
-        important: true,
-      },
-      {
-        id: 3,
-        label: 'Have a lunch',
-        important: false,
-      },
+      this.createTodoItem('Drink Coffee'),
+      this.createTodoItem('Build Awesome App'),
+      this.createTodoItem('Have a lunch'),
     ],
   };
 
+  createTodoItem (label) {
+    const newItem = {
+      id: this.todoItemAutoIncrement++,
+      label: label,
+      important: false,
+      done: false,
+    };
+
+    console.log('New item!', newItem);
+
+    return newItem;
+  }
+
   addItem = (text) => {
     this.setState(({ todoItems }) => {
-      const newItem = {
-        id: this.todoItemAutoIncrement++,
-        label: text,
-        important: false,
-      };
-
       return {
         todoItems: [
           ...todoItems,
-          newItem
+          this.createTodoItem(text),
         ],
       };
     });
@@ -61,10 +56,57 @@ export class App extends Component {
     });
   };
 
+  onToggleImportant = (id) => {
+    console.log('Toggle important:', id);
+
+    // this.setState(({ todoItems }) => {
+    //   return {
+    //     todoItems: !done,
+    //   };
+    // });
+  };
+
+  onToggleDone = (id) => {
+    this.setState(({ todoItems }) => {
+      const idx = todoItems.findIndex((el) => el.id === id);
+
+      const oldItem = todoItems[idx];
+      const newItem = {
+        ...oldItem,
+        done: !oldItem.done
+      };
+
+      const newArray = [
+        ...(todoItems.slice(0, idx)),
+        newItem,
+        ...(todoItems.slice(idx + 1))
+      ];
+
+      console.log('Toggle done:', id);
+      // console.log('All items:', todoItems);
+
+      return {
+        todoItems: newArray,
+      };
+    });
+  };
+
+  // onMarkImportant = () => {
+  //   this.setState(({ important }) => {
+  //     return {
+  //       important: !important,
+  //     };
+  //   });
+  // };
+
   render () {
+    const { todoItems } = this.state;
+    const doneCount = todoItems.filter((item) => item.done).length;
+    const todoCount = todoItems.length - doneCount;
+
     return (
       <div className="app">
-        <Header toDo={1} done={3}/>
+        <Header toDo={todoCount} done={doneCount}/>
 
         <div className="top-panel">
           <SearchPanel/>
@@ -74,6 +116,8 @@ export class App extends Component {
         <TodoList
           todos={this.state.todoItems}
           onDeleted={this.deleteItem}
+          onToggleImportant={this.onToggleImportant}
+          onToggleDone={this.onToggleDone}
         />
 
         <ItemAddForm

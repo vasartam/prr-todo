@@ -2,34 +2,8 @@ import { Component } from 'react';
 import './TodoListItem.scss';
 
 export class TodoListItem extends Component {
-  constructor (props, context) {
-    super(props, context);
-  }
-
-  state = {
-    done: false,
-    important: false,
-  };
-
-  onLabelClick = () => {
-    this.setState(({ done }) => {
-      return {
-        done: !done,
-      };
-    });
-  };
-
-  onMarkImportant = () => {
-    this.setState(({ important }) => {
-      return {
-        important: !important,
-      };
-    });
-  };
-
   render () {
-    const { label, onDeleted } = this.props;
-    const { done, important } = this.state;
+    const { label, onDeleted, onToggleImportant, onToggleDone, important, done } = this.props;
 
     let classNames = 'todo-list-item';
 
@@ -47,13 +21,13 @@ export class TodoListItem extends Component {
       >
       <span
         className="todo-list-item__label"
-        onClick={this.onLabelClick.bind(this)}
+        onClick={onToggleDone}
       >
         {label}
       </span>
       <div className="todo-list-item__buttons">
         <button className="todo-list-item__button btn btn-outline-success btn-sm" type="button"
-                onClick={this.onMarkImportant}>
+                onClick={onToggleImportant}>
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                className="bi bi-exclamation-lg" viewBox="0 0 16 16">
             <path

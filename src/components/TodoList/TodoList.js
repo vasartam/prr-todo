@@ -1,7 +1,7 @@
 import './TodoList.scss';
 import TodoListItem from '../TodoListItem';
 
-export const TodoList = ({ todos, onDeleted }) => {
+export const TodoList = ({ todos, onDeleted, onToggleImportant, onToggleDone }) => {
   return (
     <ul className="todo-list list-group">
       {todos.map(({ id, ...props }) => (
@@ -9,6 +9,8 @@ export const TodoList = ({ todos, onDeleted }) => {
           <TodoListItem
             {...props}
             onDeleted={() => onDeleted(id)}
+            onToggleImportant={() => onToggleImportant(id)}
+            onToggleDone={() => onToggleDone(id)}
           />
         </li>
       ))}
