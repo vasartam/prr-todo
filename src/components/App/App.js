@@ -4,6 +4,7 @@ import TodoList from '../TodoList';
 import ItemStatusFilter from '../ItemStatusFilter';
 import SearchPanel from '../SearchPanel';
 import Header from '../Header';
+import ItemAddForm from '../ItemAddForm';
 
 export class App extends Component {
   state = {
@@ -24,6 +25,10 @@ export class App extends Component {
         important: false,
       },
     ],
+  };
+
+  addItem = (text) => {
+    console.log('Item added!', text);
   };
 
   deleteItem = (id) => {
@@ -54,6 +59,10 @@ export class App extends Component {
         <TodoList
           todos={this.state.todoItems}
           onDeleted={this.deleteItem}
+        />
+
+        <ItemAddForm
+          onItemAdded={this.addItem}
         />
       </div>
     );
