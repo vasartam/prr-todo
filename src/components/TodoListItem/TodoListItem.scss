@@ -5,7 +5,6 @@
   font-size: 1.25rem;
 
   &__label {
-    line-height: 35px;
     cursor: pointer;
     user-select: none;
   }
@@ -21,12 +20,15 @@
 
   &__buttons {
     display: flex;
-    margin-left: 1.5rem;
+    margin: -3px -3px -3px 1.5rem;
+    height: 100%;
   }
 
   &__button {
-    width: 35px;
+    display: flex;
+    align-items: center;
     margin: 3px;
-    float: right;
+    width: 35px;
+    height: 35px;
   }
 }
