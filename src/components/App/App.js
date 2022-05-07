@@ -7,6 +7,8 @@ import Header from '../Header';
 import ItemAddForm from '../ItemAddForm';
 
 export class App extends Component {
+  todoItemAutoIncrement = 4
+
   state = {
     todoItems: [
       {
@@ -28,7 +30,22 @@ export class App extends Component {
   };
 
   addItem = (text) => {
-    console.log('Item added!', text);
+    this.setState(({todoItems}) => {
+      const newItem = {
+        id: this.todoItemAutoIncrement++,
+        label: text,
+        important: false,
+      };
+
+      console.log('Item added!', newItem);
+
+      return {
+        todoItems: [
+          ...todoItems,
+          newItem
+        ],
+      }
+    })
   };
 
   deleteItem = (id) => {
