@@ -1,9 +1,15 @@
 import './SearchPanel.scss';
+import { Component } from 'react';
 
-export const SearchPanel = () => {
-  const searchPlaceholder = 'Type here to search';
-
-  return (
-    <input className="form-control search-input" type="search" placeholder={searchPlaceholder}/>
-  );
-};
+export class SearchPanel extends Component {
+  render () {
+    return (
+      <input
+        className="form-control search-input"
+        type="search"
+        placeholder="Type here to search"
+        onChange={(e) => this.props.onSearchChanged(e.target.value)}
+      />
+    );
+  }
+}

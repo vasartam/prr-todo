@@ -1,7 +1,13 @@
 import './TodoList.scss';
 import TodoListItem from '../TodoListItem';
 
-export const TodoList = ({ todos, onDeleted, onToggleImportant, onToggleDone }) => {
+export const TodoList = ({ todos, onDeleted, onToggleImportant, onToggleDone, search }) => {
+  const todosFiltered = todos;
+
+  if (search) {
+
+  }
+
   return (
     <ul className="todo-list list-group">
       {todos.map(({ id, ...props }) => (

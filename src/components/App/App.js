@@ -15,6 +15,8 @@ export class App extends Component {
       this.createTodoItem('Build Awesome App'),
       this.createTodoItem('Have a lunch'),
     ],
+
+    search: '',
   };
 
   createTodoItem (label) {
@@ -88,6 +90,12 @@ export class App extends Component {
     });
   };
 
+  updateSearch = (value) => {
+    this.setState({
+      search: value
+    });
+  };
+
   render () {
     const { todoItems } = this.state;
     const doneCount = todoItems.filter((item) => item.done).length;
@@ -98,7 +106,10 @@ export class App extends Component {
         <Header toDo={todoCount} done={doneCount}/>
 
         <div className="top-panel">
-          <SearchPanel/>
+          <SearchPanel
+            onSearchChanged={this.updateSearch}
+            search={this.state.search}
+          />
           <ItemStatusFilter/>
         </div>
 
@@ -107,6 +118,7 @@ export class App extends Component {
           onDeleted={this.deleteItem}
           onToggleImportant={this.onToggleImportant}
           onToggleDone={this.onToggleDone}
+          search={this.state.search}
         />
 
         <ItemAddForm
