@@ -56,48 +56,37 @@ export class App extends Component {
     });
   };
 
+  toggleProperty = (arr, id, propName) => {
+    const idx = arr.findIndex((el) => el.id === id);
+
+    const oldItem = arr[idx];
+    const newItem = {
+      ...oldItem,
+      [propName]: !oldItem[propName]
+    };
+
+    return [
+      ...(arr.slice(0, idx)),
+      newItem,
+      ...(arr.slice(idx + 1))
+    ];
+  }
+
   onToggleImportant = (id) => {
-    console.log('Toggle important:', id);
-
-    // this.setState(({ todoItems }) => {
-    //   return {
-    //     todoItems: !done,
-    //   };
-    // });
-  };
-
-  onToggleDone = (id) => {
     this.setState(({ todoItems }) => {
-      const idx = todoItems.findIndex((el) => el.id === id);
-
-      const oldItem = todoItems[idx];
-      const newItem = {
-        ...oldItem,
-        done: !oldItem.done
-      };
-
-      const newArray = [
-        ...(todoItems.slice(0, idx)),
-        newItem,
-        ...(todoItems.slice(idx + 1))
-      ];
-
-      console.log('Toggle done:', id);
-      // console.log('All items:', todoItems);
-
       return {
-        todoItems: newArray,
+        todoItems: this.toggleProperty(todoItems, id, 'important'),
       };
     });
   };
 
-  // onMarkImportant = () => {
-  //   this.setState(({ important }) => {
-  //     return {
-  //       important: !important,
-  //     };
-  //   });
-  // };
+  onToggleDone = (id) => {
+    this.setState(({ todoItems }) => {
+      return {
+        todoItems: this.toggleProperty(todoItems, id, 'done'),
+      };
+    });
+  };
 
   render () {
     const { todoItems } = this.state;
