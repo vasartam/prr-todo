@@ -7,7 +7,7 @@ import Header from '../Header';
 import ItemAddForm from '../ItemAddForm';
 
 export class App extends Component {
-  todoItemAutoIncrement = 4
+  todoItemAutoIncrement = 4;
 
   state = {
     todoItems: [
@@ -30,26 +30,24 @@ export class App extends Component {
   };
 
   addItem = (text) => {
-    this.setState(({todoItems}) => {
+    this.setState(({ todoItems }) => {
       const newItem = {
         id: this.todoItemAutoIncrement++,
         label: text,
         important: false,
       };
 
-      console.log('Item added!', newItem);
-
       return {
         todoItems: [
           ...todoItems,
           newItem
         ],
-      }
-    })
+      };
+    });
   };
 
   deleteItem = (id) => {
-    this.setState(({todoItems}) => {
+    this.setState(({ todoItems }) => {
       const idx = todoItems.findIndex((el) => el.id === id);
 
       const newArray = [
@@ -59,9 +57,9 @@ export class App extends Component {
 
       return {
         todoItems: newArray,
-      }
-    })
-  }
+      };
+    });
+  };
 
   render () {
     return (
