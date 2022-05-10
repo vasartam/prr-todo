@@ -25,7 +25,7 @@ export class ItemStatusFilter extends Component {
     return (
       <div className="item-status-filter btn-group">
         {
-          this.options.map(({ label , statusToToggle}) => (
+          this.options.map(({ label, statusToToggle }) => (
             <ItemStatusFilterOption
               key={statusToToggle}
               statusToToggle={todoItemStatuses[statusToToggle]}

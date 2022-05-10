@@ -74,7 +74,7 @@ export class App extends Component {
       newItem,
       ...(arr.slice(idx + 1))
     ];
-  }
+  };
 
   onToggleImportant = (id) => {
     this.setState(({ todoItems }) => {

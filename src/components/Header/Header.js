@@ -1,6 +1,6 @@
 import './Header.scss';
 
-export const Header = ({toDo, done}) => {
+export const Header = ({ toDo, done }) => {
   return (
     <header className="header">
       <h1>Todo List</h1>
