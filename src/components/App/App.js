@@ -6,6 +6,12 @@ import SearchPanel from '../SearchPanel';
 import Header from '../Header';
 import ItemAddForm from '../ItemAddForm';
 
+export const todoItemStatuses = {
+  'all': 0,
+  'active': 1,
+  'done': 2,
+};
+
 export class App extends Component {
   todoItemAutoIncrement = 1;
 
@@ -15,21 +21,17 @@ export class App extends Component {
       this.createTodoItem('Build Awesome App'),
       this.createTodoItem('Have a lunch'),
     ],
-
     search: '',
+    currentStatusFilter: todoItemStatuses['all'],
   };
 
   createTodoItem (label) {
-    const newItem = {
+    return {
       id: this.todoItemAutoIncrement++,
       label: label,
       important: false,
       done: false,
     };
-
-    console.log('New item!', newItem);
-
-    return newItem;
   }
 
   addItem = (text) => {
@@ -96,6 +98,16 @@ export class App extends Component {
     });
   };
 
+  updateFilter = (status) => {
+    if (!Object.values(todoItemStatuses).includes(status)) {
+      return;
+    }
+
+    this.setState({
+      currentStatusFilter: status,
+    });
+  };
+
   render () {
     const { todoItems } = this.state;
     const doneCount = todoItems.filter((item) => item.done).length;
@@ -110,7 +122,10 @@ export class App extends Component {
             onSearchChanged={this.updateSearch}
             search={this.state.search}
           />
-          <ItemStatusFilter/>
+          <ItemStatusFilter
+            onFilterUpdated={this.updateFilter}
+            currentStatusFilter={this.state.currentStatusFilter}
+          />
         </div>
 
         <TodoList
@@ -119,6 +134,7 @@ export class App extends Component {
           onToggleImportant={this.onToggleImportant}
           onToggleDone={this.onToggleDone}
           search={this.state.search}
+          currentStatusFilter={this.state.currentStatusFilter}
         />
 
         <ItemAddForm
