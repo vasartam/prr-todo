@@ -119,7 +119,7 @@ export class App extends Component {
 
         <div className="top-panel">
           <SearchPanel
-            onSearchChanged={this.updateSearch}
+            onSearchChange={this.updateSearch}
             search={this.state.search}
           />
           <ItemStatusFilter

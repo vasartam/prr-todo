@@ -11,7 +11,7 @@ export class SearchPanel extends Component {
 
     this.setState({ search: value });
 
-    this.props.onSearchChanged(value);
+    this.props.onSearchChange(value);
   };
 
   render () {
